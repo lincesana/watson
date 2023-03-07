@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_06_151630) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_07_110328) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "searches", force: :cascade do |t|
+    t.text "website_name"
+    t.text "website_url"
+    t.boolean "trustpilot_verification"
+    t.integer "scandoc"
+    t.boolean "https"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
