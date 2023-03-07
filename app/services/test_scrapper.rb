@@ -2,10 +2,11 @@ require "open-uri"
 require "mechanize"
 
 mechanize = Mechanize.new
-page = mechanize.get('https://www.merriam-webster.com/word-of-the-day')
+page = mechanize.get('https://www.scamdoc.com/')
 input = page.forms[0]
-input['s'] = 'awesome'
+# pp input
+input['expression'] = 'veja.com'
 new_page = input.submit
-  word_searched = new_page.search('h1.hword')
-puts new_page.uri
-puts "You successfully searched for the word #{word_searched.text.strip.upcase}."
+# puts new_page.uri
+value = new_page.search("#final_score").attribute('value').value
+puts "#{input['expression']} score in ScamDoc is: #{value}."
