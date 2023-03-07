@@ -1,14 +1,10 @@
 class SearchesController < ApplicationController
-  def new
-    @search = Search.new
-  end
-
-  def index
-    @search = Search.all
+  def top
+    @search = Search.where(rating > 5)
   end
 
   def show
-    @search = search.find(params[:id])
+    @search = Search.find(params[:id])
   end
 
   private
