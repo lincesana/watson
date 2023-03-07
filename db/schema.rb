@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< Updated upstream
 ActiveRecord::Schema[7.0].define(version: 2023_03_07_120211) do
+=======
+ActiveRecord::Schema[7.0].define(version: 2023_03_07_122950) do
+>>>>>>> Stashed changes
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,7 +22,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_120211) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "search_id"
+    t.index ["search_id"], name: "index_bookmarks_on_search_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
+<<<<<<< Updated upstream
+=======
+  end
+
+  create_table "searches", force: :cascade do |t|
+    t.text "website_name"
+    t.text "website_url"
+    t.boolean "trustpilot_verification"
+    t.integer "scandoc"
+    t.boolean "https"
+    t.integer "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+>>>>>>> Stashed changes
   end
 
   create_table "users", force: :cascade do |t|
@@ -33,5 +53,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_120211) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookmarks", "searches"
   add_foreign_key "bookmarks", "users"
 end
