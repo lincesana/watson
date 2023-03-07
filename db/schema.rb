@@ -22,7 +22,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_122950) do
     t.bigint "search_id"
     t.index ["search_id"], name: "index_bookmarks_on_search_id"
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
-
   end
 
   create_table "searches", force: :cascade do |t|
