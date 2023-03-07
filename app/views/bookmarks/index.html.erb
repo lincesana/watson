@@ -1,0 +1,5 @@
+<h1>My bookmarks</h1>
+
+<% @bookmarks.each do |bookmark| %>
+      <li>Your bookmark: "<%= bookmark.search.website_name %>, <%= bookmark.search.rating %>, <%= link_to "Delete this bookmark", bookmark_path(bookmark), data: {turbo_method: :delete} %> </li>
+  <% end %>
