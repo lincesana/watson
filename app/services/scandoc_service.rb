@@ -17,6 +17,6 @@ class ScandocService
     puts new_page.uri
     puts "You successfully searched for the word #{word_searched.text.strip.upcase}."
   end
-end
 
-search
+  search
+end
