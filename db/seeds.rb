@@ -13,19 +13,18 @@ Search.destroy_all
 User.destroy_all
 
 puts "Creating users..."
-user1 = { username: "AryaStark", password: "123456" }
-user2 = { username: "JonSnow", password: "123456" }
-user3 = { username: "JaimeLannister", password: "123456" }
-user4 = { username: "SansaStark", password: "123456" }
-user5 = { username: "Daenerys", password: "123456" }
-user6 = { username: "JoffreyBaratheon", password: "123456" }
+user1 = { username: "AryaStark", email: "123@mail.com", password: "123456" }
+user2 = { username: "JonSnow", email: "456@mail.com", password: "123456" }
+user3 = { username: "JaimeLannister", email: "789@mail.com", password: "123456" }
+user4 = { username: "SansaStark", email: "987@mail.com", password: "123456" }
+user5 = { username: "Daenerys", email: "654@mail.com", password: "123456" }
+user6 = { username: "JoffreyBaratheon", email: "321@mail.com", password: "123456" }
 
 [user1, user2, user3, user4, user5, user6].each do |attributes|
   user = User.create!(attributes)
   puts "Created #{user.username}"
 end
 puts "Finished!"
-
 puts "Creating searches..."
 
 amazon = {
@@ -34,8 +33,7 @@ amazon = {
   trustpilot_verification: true,
   scandoc: 99,
   https: true,
-  rating: 9,
-  user_id: 1
+  rating: 9
 }
 
 aliexpress = {
@@ -44,8 +42,7 @@ aliexpress = {
   trustpilot_verification: true,
   scandoc: 77,
   https: true,
-  rating: 6,
-  user_id: 2
+  rating: 6
 }
 
 ebay = {
@@ -54,8 +51,7 @@ ebay = {
   trustpilot_verification: true,
   scandoc: 84,
   https: true,
-  rating: 7,
-  user_id: 3
+  rating: 7
 }
 
 fnac = {
@@ -64,8 +60,7 @@ fnac = {
   trustpilot_verification: true,
   scandoc: 56,
   https: true,
-  rating: 7,
-  user_id: 4
+  rating: 7
 }
 mim = {
   website_name: "mim",
@@ -73,8 +68,7 @@ mim = {
   trustpilot_verification: false,
   scandoc: 45,
   https: true,
-  rating: 6,
-  user_id: 5
+  rating: 6
 }
 ganzitos = {
   website_name: "Ganzitos Shoes",
@@ -82,8 +76,7 @@ ganzitos = {
   trustpilot_verification: true,
   scandoc: 13,
   https: true,
-  rating: 5,
-  user_id: 6
+  rating: 5
 }
 veja = {
   website_name: "Veja Espana",
@@ -91,8 +84,7 @@ veja = {
   trustpilot_verification: false,
   scandoc: 1,
   https: true,
-  rating: 1,
-  user_id: 1
+  rating: 1
 }
 eusale = {
   website_name: "Eusale Coat",
@@ -100,8 +92,7 @@ eusale = {
   trustpilot_verification: false,
   scandoc: 1,
   https: true,
-  rating: 1,
-  user_id: 1
+  rating: 1
 }
 
 yowtaero = {
@@ -110,8 +101,8 @@ yowtaero = {
   trustpilot_verification: false,
   scandoc: 1,
   https: true,
-  rating: 1,
-  user_id: 2
+  rating: 1
+
 }
 ikea = {
   website_name: "IKEA Espana",
@@ -119,8 +110,16 @@ ikea = {
   trustpilot_verification: true,
   scandoc: 80,
   https: true,
-  rating: 8,
-  user_id: 3
+  rating: 8
+
 }
 
+[amazon, aliexpress, ebay, fnac, mim, ganzitos, veja, eusale, yowtaero, ikea].each do |attributes|
+  search = Search.create!(attributes)
+  bookmark = Bookmark.create(search: search, user_id: User.ids.sample)
+  puts "Created #{search.website_name}"
+end
+puts "Finished!"
+
 puts "Creating bookmarks..."
+puts "Created #{bookmark}"
