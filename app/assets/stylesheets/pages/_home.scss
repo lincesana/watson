@@ -1,1 +1,58 @@
 // Specific CSS for your home-page
+.spinner {
+  position: relative;
+  background-color: purple;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: conic-gradient(#88C5A8, #E8DA75, #ECE8E8, #88C5A8 );
+  animation: spin 1.4s linear infinite;
+  border: 4px solid black;
+}
+
+.spinner::before {
+  content: "";
+  background-color: white;
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 4px solid black;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+h2 {
+  position: relative;
+  font-size: 24px;
+  color: #252839;
+  -webkit-text-stroke: 0.1vw #383d52;
+}
+
+h2::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  color: #88C5A8;
+  -webkit-text-stroke: 0vw #383d52;
+  border-right: 2px solid #88C5A8;
+  overflow: hidden;
+  animation: animate 3s linear infinite;
+}
+@keyframes animate {
+  0%,10%,100% {
+    width: 0;
+  }
+  70%,90% {
+    width: 10.7%;
+  }
+}
