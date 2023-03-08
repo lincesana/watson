@@ -1,6 +1,6 @@
 class SearchesController < ApplicationController
-  def top
-    @search = Search.where(rating > 5)
+  def index
+    @searches = Search.where("rating>5")
   end
 
   def show
