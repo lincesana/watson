@@ -8,9 +8,10 @@
 require "open-uri"
 
 puts "Cleaning database..."
-Bookmark.destroy_all
-Search.destroy_all
+
 User.destroy_all
+Search.destroy_all
+Bookmark.destroy_all
 
 puts "Creating users..."
 user1 = { username: "AryaStark", email: "123@mail.com", password: "123456" }
@@ -64,7 +65,7 @@ fnac = {
 }
 mim = {
   website_name: "mim",
-  website_url: "www.mimshoes.com",
+  website_url: "mimshoes.com",
   trustpilot_verification: false,
   scandoc: 45,
   https: true,
@@ -116,10 +117,10 @@ ikea = {
 
 [amazon, aliexpress, ebay, fnac, mim, ganzitos, veja, eusale, yowtaero, ikea].each do |attributes|
   search = Search.create!(attributes)
-  bookmark = Bookmark.create(search: search, user_id: User.ids.sample)
+  bookmark = Bookmark.create(search_id: search.id, user_id: User.ids.sample)
   puts "Created #{search.website_name}"
+  puts "Created #{bookmark}"
 end
 puts "Finished!"
 
 puts "Creating bookmarks..."
-puts "Created #{bookmark}"
