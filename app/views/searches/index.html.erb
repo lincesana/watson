@@ -1,15 +1,26 @@
-<div>
-  <%= form_with url: "/searches", method: :get do |form| %>
-    <%= form.label :query, "Search for:" %>
-    <%= form.text_field :query %>
-    <%= form.submit "Search" %>
-  <% end %>
-</div>
+<div class="wrapper">
 
-<div>
-  <h1>Search here</h1>
-  <% @searches.each do |search| %>
-    <%= search.website_name %>
-    <%= search.rating %>
-  <% end %>
+  <div class="logo">
+    <%= image_tag "mainlogo" %>
+  </div>
+
+  <div class="slogan">
+    <h1>We check <br>the red<br> flags.</h1>
+    <h1><strong>You shop <br>safely.</strong></h1>
+  </div>
+
+
+  <div>
+    <%= form_with url: "/searches", method: :get do |form| %>
+      <%= form.text_field :query, class: "form-input" %>
+      <%= form.submit "S" %>
+    <% end %>
+  </div>
+
+  <div>
+    <% @searches.each do |search| %>
+      <%= search.website_name %>
+      <%= search.rating %>
+    <% end %>
+  </div>
 </div>
