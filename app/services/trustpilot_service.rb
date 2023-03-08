@@ -6,7 +6,7 @@ class TrustpilotService
   require "open-uri"
   require "nokogiri"
 
-  def check_trustpilot_stores
+  def trustpilot
     url = "https://www.trustpilot.com/review/#{@company}"
     html_file = URI.open(url)
     return true if html_file.read

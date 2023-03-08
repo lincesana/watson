@@ -1,3 +1,4 @@
+
 <div class="wrapper">
 
   <div class="logo">
@@ -16,6 +17,15 @@
       <%= form.submit "S" %>
     <% end %>
   </div>
+
+<div>
+  <%= form_with url: "/searches", method: :post do |form| %>
+    <%= form.label :query, "Search for:" %>
+    <%= form.text_field :query %>
+    <%= form.submit "Search" %>
+  <% end %>
+</div>
+
 
   <div>
     <% @searches.each do |search| %>
