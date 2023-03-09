@@ -14,7 +14,7 @@ class HttpsService
     if @company.match?(/^www./)
     url = "https://#{@company}"
     return true if  html_file = URI.open(url).read
-    rescue Exception OpenSSL::SSL::SSLError
+    # rescue Exception OpenSSL::SSL::SSLError
     end
   end
       #if shopname starts with https, return true, if not, return nil.
