@@ -1,0 +1,36 @@
+.show-card {
+  background-color: $darkgreen;
+  color: black;
+  font-size: 15px;
+  font-weight: bold;
+  // text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  width: 90%;
+  overflow: hidden;
+  padding: 8px;
+  margin:auto;
+}
+.show-card ul {
+  margin: 0;
+}
+.card-container {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.card-container p {
+  text-align: center;
+  font-size: 20px;
+}
+
+.watson-rating-card i {
+  font-size: 150px;
+  color: $darkgreen;
+
+}
+
+.watson-rating-card {
+  text-align: center;
+}

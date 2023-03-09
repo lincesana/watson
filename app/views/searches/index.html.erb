@@ -6,7 +6,8 @@
 
   <div class="display-search" data-search-target="displaySearch">
     <div class="searching", width="100%">
-      <h2 class="animated-text" data-text="Analaysing...">Analaysing...</h2>
+       <h2 class="animated-text" data-text="Analaysing...">Analysing...</h2>
+
     </div>
     <div class="glass-position">
       <div class="spinner">
@@ -16,14 +17,27 @@
   </div>
 
   <div class="display-slogan" data-search-target="displaySlogan">
-    <div class="slogan">
-      <h2>We check <br>the red<br> flags.</h2>
-      <h2><strong>You shop <br>safely.</strong></h2>
+    <div class="slogan" >
+      <h1>We check <br>the red<br> flags.</h1>
+      <h1><strong>You shop <br>safely.</strong></h1>
+
     </div>
   </div>
 
   <div>
     <%= form_with url: "/searches", method: :post, data: { search_target: "mainSearch" } do |form| %>
+    <%= form.label :query, "Search for:" %>
+      <div class ="d-flex">
+      <%= form.text_field :query, class: "form-input" %>
+      <div>
+      <%= button_tag content_tag(:i, "", class:"fa-solid fa-magnifying-glass"), type: "submit", data: { action: "click->search#displaySearch" }, id: "lupa" %>
+      </div>
+      </div>
+      <p id= info-search> Write your shop's <strong>web address</strong> above</p>
+    <% end %>
+  </div>
+
+
       <%= form.label :query, "Search for:" %>
       <%= form.text_field :query %>
       <%= form.submit "Search", data: { action: "click->search#displaySearch" } %>
@@ -31,9 +45,19 @@
   </div>
 
   <div>
-    <% @searches.each do |search| %>
-      <%= search.website_name %>
-      <%= search.rating %>
-    <% end %>
+      <p id= top-searches> Top <strong>3</strong> searches</p>
+      <% @searches.each do |search| %>
+
+        <div class= "index-card">
+          <p> <strong><%=search.website_name%></strong></p>
+          <p> <%= search.website_url %></p>
+          <%# <p>Rating: <%= search.rating % >/10 </p> %>
+        </div>
+      <% end %>
   </div>
+
+
+  <div class="line">
+  </div>
+
 </div>
