@@ -10,7 +10,7 @@
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-  <body>
+  <body class="<%= "cream-background" if devise_controller? || params[:controller] == "bookmarks"  %>" >
     <%= render "shared/flashes" %>
     <%= yield %>
   </body>
