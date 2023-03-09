@@ -1,13 +1,13 @@
-
 <div class="wrapper" data-controller="search">
 
   <div class="logo">
-    <%= image_tag "mainlogo" %>
+    <%= image_tag "mainlogo", width: "100%" %>
   </div>
 
   <div class="display-search" data-search-target="displaySearch">
     <div class="searching", width="100%">
        <h2 class="animated-text" data-text="Analaysing...">Analysing...</h2>
+
     </div>
     <div class="glass-position">
       <div class="spinner">
@@ -20,6 +20,7 @@
     <div class="slogan" >
       <h1>We check <br>the red<br> flags.</h1>
       <h1><strong>You shop <br>safely.</strong></h1>
+
     </div>
   </div>
 
@@ -36,6 +37,12 @@
     <% end %>
   </div>
 
+
+      <%= form.label :query, "Search for:" %>
+      <%= form.text_field :query %>
+      <%= form.submit "Search", data: { action: "click->search#displaySearch" } %>
+    <% end %>
+  </div>
 
   <div>
       <p id= top-searches> Top <strong>3</strong> searches</p>
