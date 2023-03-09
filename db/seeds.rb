@@ -43,7 +43,7 @@ aliexpress = {
   trustpilot_verification: true,
   scandoc: 77,
   https: true,
-  rating: 6
+  rating: 8
 }
 
 ebay = {

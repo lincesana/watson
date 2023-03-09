@@ -1,6 +1,7 @@
 class SearchesController < ApplicationController
   def index
-    @searches = Search.where("rating>5")
+    @searches = Search.where("rating>=7").limit(3)
+
   end
 
   def create
