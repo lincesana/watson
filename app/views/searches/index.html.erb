@@ -1,31 +1,34 @@
-
-<div class="wrapper">
+<div class="wrapper" data-controller="search">
 
   <div class="logo">
-    <%= image_tag "mainlogo" %>
+    <%= image_tag "mainlogo", width: "100%" %>
   </div>
 
-  <div class="slogan">
-    <h1>We check <br>the red<br> flags.</h1>
-    <h1><strong>You shop <br>safely.</strong></h1>
+  <div class="display-search" data-search-target="displaySearch">
+    <div class="searching", width="100%">
+      <h2 class="animated-text" data-text="Analaysing...">Analaysing...</h2>
+    </div>
+    <div class="glass-position">
+      <div class="spinner">
+      </div>
+      <%= image_tag "search.png", class: "glass", alt: "search", width: "180px" %>
+    </div>
   </div>
 
+  <div class="display-slogan" data-search-target="displaySlogan">
+    <div class="slogan">
+      <h2>We check <br>the red<br> flags.</h2>
+      <h2><strong>You shop <br>safely.</strong></h2>
+    </div>
+  </div>
 
   <div>
-    <%= form_with url: "/searches", method: :get do |form| %>
-      <%= form.text_field :query, class: "form-input" %>
-      <%= form.submit "S" %>
+    <%= form_with url: "/searches", method: :post, data: { search_target: "mainSearch" } do |form| %>
+      <%= form.label :query, "Search for:" %>
+      <%= form.text_field :query %>
+      <%= form.submit "Search", data: { action: "click->search#displaySearch" } %>
     <% end %>
   </div>
-
-<div>
-  <%= form_with url: "/searches", method: :post do |form| %>
-    <%= form.label :query, "Search for:" %>
-    <%= form.text_field :query %>
-    <%= form.submit "Search" %>
-  <% end %>
-</div>
-
 
   <div>
     <% @searches.each do |search| %>
