@@ -10,7 +10,7 @@ class ScamdocService
   end
 
   def scamdoc_score
-    mechanize = Mechanize.new {|a| a.ssl_version, a.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE}
+    mechanize = Mechanize.new {|a| a.ssl_version, a.verify_mode = 'SSLv3'}
     # mechanize.user_agent = 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_2; de-at) AppleWebKit/531.21.8 (KHTML, like Gecko) Version/4.0.4 Safari/531.21.10'
     # mechanize.set_proxy('202.8.74.10', '8080')^
 
@@ -25,7 +25,7 @@ class ScamdocService
   end
 
   def https_presence
-    mechanize = Mechanize.new {|a| a.ssl_version, a.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE}
+    mechanize = Mechanize.new {|a| a.ssl_version, a.verify_mode = 'SSLv3'}
     # mechanize.set_proxy('202.8.74.10', '8080')
     page = mechanize.get('https://www.scamdoc.com/')
     input = page.forms[0]
