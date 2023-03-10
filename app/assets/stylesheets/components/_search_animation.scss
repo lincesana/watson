@@ -1,7 +1,8 @@
 // CSS for the searching spinner
 .animated-text {
   position: relative;
-  font-size: 24px;
+  font-size: 30px;
+  line-height: 1.4;
   color: #252839;
   -webkit-text-stroke: 0.1vw #383d52;
 }
@@ -30,11 +31,11 @@
 
 .spinner {
   position: absolute;
-  left: 80px;
-  top: 6px;
+  left: 44px;
+  top: 2px;
   background-color: purple;
-  width: 135px;
-  height: 135px;
+  width: 195px;
+  height: 195px;
   border-radius: 50%;
   background: conic-gradient(#88C5A8, #E8DA75, #ECE8E8, #88C5A8 );
   animation: spin 1.4s linear infinite;
@@ -61,7 +62,7 @@
 
 .glass-position {
   position: relative;
-  top: 20px;
+  top: 50px;
   text-align: center;
 }
 
