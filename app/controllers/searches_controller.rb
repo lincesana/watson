@@ -1,17 +1,21 @@
 class SearchesController < ApplicationController
   def index
     @searches = Search.where("rating>=7").limit(3)
-
   end
 
   def create
-    @search = Search.new
-    @search.website_url = params["query"]
-    @search.trustpilot_verification = TrustpilotService.new(params["query"]).trustpilot.present?
-    @search.scandoc = ScamdocService.new(params["query"]).scamdoc_score
-    @search.https = ScamdocService.new(params["query"]).https_presence
+    @search = Search.all.find{|e| e.website_url == params["query"]}
+    unless @search.present?
 
-    if @search.save
+      @search = Search.new
+      @search.website_url = params["query"]
+      @search.trustpilot_verification = TrustpilotService.new(params["query"]).trustpilot.present?
+      @search.scandoc = ScamdocService.new(params["query"]).scamdoc_score
+      @search.https = ScamdocService.new(params["query"]).https_presence
+      @search.save
+    end
+
+    if @search.id
       redirect_to search_path(@search)
     else
       render 'index'

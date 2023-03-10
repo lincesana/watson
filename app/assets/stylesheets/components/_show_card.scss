@@ -25,11 +25,18 @@
   font-size: 20px;
 }
 
-.watson-rating-card i {
-  font-size: 150px;
+.watson-rating-card #thumbs-up {
+  font-size: 180px;
   color: $darkgreen;
 
 }
+
+.watson-rating-card #thumbs-down {
+  font-size: 180px;
+  color: rgb(98, 22, 22);
+
+}
+
 
 .watson-rating-card {
   text-align: center;

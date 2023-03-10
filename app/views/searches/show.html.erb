@@ -5,8 +5,17 @@
 
   <div class="watson-rating-card mt-3">
     <h3><strong>"<%=@search.website_url %>"</strong></h3>
-    <i class="fa-regular fa-thumbs-up"></i>
-    <p class="mt-3 mb-5">Rating score is <strong>97%</strong></p>
+    <% if @search.website_url == "amazon.com" %>
+      <i class="fa-regular fa-thumbs-up", id="thumbs-up"></i>
+      <p class="mt-3 mb-5">Rating score is <strong>97%</strong></p>
+    <% elsif @search.website_url == "veja.com" %>
+      <i class="fa-regular fa-thumbs-up", id="thumbs-up"></i>
+      <p class="mt-3 mb-5">Rating score is <strong>87%</strong></p>
+    <% else %>
+      <i class="fa-regular fa-thumbs-down", id="thumbs-down"></i>
+      <p class="mt-3 mb-5">Rating score is <strong>57%</strong></p>
+    <% end %>
+
   </div>
 
 
