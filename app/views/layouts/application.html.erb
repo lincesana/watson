@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Watson</title>
+    <title>Watson: shop safely</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= favicon_link_tag "favicon_2.png", rel: "icon", type: "image/png" %>
+
   </head>
 
   <body class="<%= "cream-background" if devise_controller? || params[:controller] == "bookmarks"  %>" >
+
+ <div>
+
+    <%= link_to searches_path, class: 'logo' do %>
+      <%= image_tag "mainlogo", width: "100%" %>
+      <% end %>
+  </div>
+
     <%= render "shared/flashes" %>
     <%= yield %>
   </body>
