@@ -1,12 +1,20 @@
-<div>
+<div class="wrapper">
   <div class="logo">
       <%= image_tag "mainlogo" %>
   </div>
 
   <div class="watson-rating-card mt-3">
     <h3><strong>"<%=@search.website_url %>"</strong></h3>
-    <i class="fa-regular fa-thumbs-up"></i>
-    <p class="mt-3 mb-5">Rating score is <strong>97%</strong></p>
+    <% if @search.website_url == "amazon.com" %>
+      <i class="fa-regular fa-thumbs-up", id="thumbs-up"></i>
+      <p class="mt-3 mb-5">Rating score is <strong>97%</strong></p>
+    <% elsif @search.website_url == "veja.com" %>
+      <i class="fa-regular fa-thumbs-up", id="thumbs-up"></i>
+      <p class="mt-3 mb-5">Rating score is <strong>87%</strong></p>
+    <% else %>
+      <i class="fa-regular fa-thumbs-down", id="thumbs-down"></i>
+      <p class="mt-3 mb-5">Rating score is <strong>27%</strong></p>
+    <% end %>
   </div>
 
 
@@ -28,9 +36,9 @@
     </div>
   </div>
 
-  <p style="text-align:center;">Make your life <strong>easier</strong></p>
+  <p style="text-align:center;" class= "mt-5">Make your life <strong>easier</strong></p>
 
-  <div style="text-align:center";>
+  <div style="text-align:center" class= "mt-5";>
     <%= link_to"Save search", new_user_registration_path, class:"btn-yellow" %>
   </div>
 
