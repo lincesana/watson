@@ -7,8 +7,11 @@ export default class extends Controller {
   }
   displaySearch(event) {
     event.preventDefault()
+    setTimeout((e)=> {
+      console.log(e, 'hola');
+      this.mainSearchTarget.submit()
+    }, 5000);
     this.displaySloganTarget.style.display = 'none'
     this.displaySearchTarget.classList.remove("display-search")
-    this.mainSearchTarget.submit()
   }
 }
