@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
 
   resources :searches do
-    resources :bookmarks, only: %i[new create]
+    # resources :bookmarks, only: %i[new create index show]
   end
-  resources :bookmarks, only: [:destroy]
+  resources :bookmarks, only: %i[new create index show destroy]
 end
