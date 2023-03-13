@@ -4,7 +4,7 @@ class SearchesController < ApplicationController
   end
 
   def create
-    @search = Search.all.find{|e| e.website_url == params["query"]}
+    @search = Search.all.find { |e| e.website_url == params["query"] }
     unless @search.present?
 
       @search = Search.new
