@@ -18,11 +18,10 @@
 
   <body class="<%= "cream-background" if devise_controller? || params[:controller] == "bookmarks"  %>" >
 
- <div>
-
+ <div style="text-align: center;">
     <%= link_to searches_path, class: 'logo' do %>
-      <%= image_tag "mainlogo", width: "100%" %>
-      <% end %>
+    <%= image_tag "mainlogo", width: "100%" %>
+    <% end %>
   </div>
 
     <%= render "shared/flashes" %>

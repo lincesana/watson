@@ -1,5 +1,9 @@
 class BookmarksController < ApplicationController
-  before_action :set_bookmarks, except: :destroy
+  before_action :set_bookmarks, except: %i[index destroy]
+  def index
+    @searches = Search.where("rating>=7").limit(3)
+  end
+
   def new
     @bookmark = Bookmark.new
   end

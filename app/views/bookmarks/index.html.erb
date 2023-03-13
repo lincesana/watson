@@ -1,5 +1,15 @@
-<h1>My bookmarks</h1>
+<div class="wrapper">
+  <h2 class="text-center pb-3">My bookmarks:</h2>
 
-<% @bookmarks.each do |bookmark| %>
-      <li>Your bookmark: "<%= bookmark.search.website_name %>, <%= bookmark.search.rating %>, <%= link_to "Delete this bookmark", bookmark_path(bookmark), data: {turbo_method: :delete} %> </li>
-  <% end %>
+  <div>
+      <% @searches.each do |search| %>
+
+        <div class= "index-card">
+          <p> <strong><%=search.website_name%></strong></p>
+          <p> <%= search.website_url %></p>
+          <%# <p>Rating: <%= search.rating % >/10 </p> %>
+        </div>
+      <% end %>
+    </div>
+
+</div>
