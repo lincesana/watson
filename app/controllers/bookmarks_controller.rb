@@ -1,7 +1,8 @@
 class BookmarksController < ApplicationController
   before_action :set_bookmarks, except: %i[index destroy]
+
   def index
-    @searches = Search.where("rating>=7").limit(3)
+    @bookmarks = Bookmark.where(user: current_user)
   end
 
   def new
@@ -12,7 +13,7 @@ class BookmarksController < ApplicationController
     @bookmark = Bookmark.new(bookmark_params)
     @bookmark.search = @search
     if @bookmark.save
-      redirect_to search_path(@search)
+      redirect_to bookmarks
     else
       render :new, status: :unprocessable_entity
     end

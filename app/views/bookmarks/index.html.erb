@@ -2,11 +2,10 @@
   <h2 class="text-center pb-3">My bookmarks:</h2>
 
   <div>
-      <% @searches.each do |search| %>
+      <% @bookmarks.each do |bookmark| %>
 
         <div class= "index-card">
-          <p> <strong><%=search.website_name%></strong></p>
-          <p> <%= search.website_url %></p>
+          <p> <%= bookmark.website_url %></p>
           <%# <p>Rating: <%= search.rating % >/10 </p> %>
         </div>
       <% end %>
