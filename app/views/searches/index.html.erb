@@ -35,11 +35,14 @@
       <p id= top-searches> Top <strong>3</strong> searches:</p>
       <% @searches.each do |search| %>
 
+        <%= link_to search_path(search) do %>
         <div class= "index-card">
           <p> <strong><%=search.website_name%></strong></p>
           <p> <%= search.website_url %></p>
           <%# <p>Rating: <%= search.rating % >/10 </p> %>
+
         </div>
+        <% end %>
       <% end %>
     </div>
 
