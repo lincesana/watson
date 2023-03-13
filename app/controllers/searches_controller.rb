@@ -1,16 +1,20 @@
 class SearchesController < ApplicationController
+  skip_before_action :authenticate_user!
+
   def index
     @searches = Search.where("rating>=7").limit(3)
   end
 
   def create
-    @search = Search.all.find { |e| e.website_url == params["query"] }
-    unless @search.present?
+    @website = Website.find_by(website_url: params["query"])
+    @search = Search.where(website: @website).last if @website
 
+    unless @website && @search.present?
       @search = Search.new
-      @search.website_url = params["query"]
+      @website = Website.create(website_url: params["query"])
+      @search.website = @website
       @search.trustpilot_verification = TrustpilotService.new(params["query"]).trustpilot.present?
-      @search.scandoc = ScamdocService.new(params["query"]).scamdoc_score
+      @search.scamdoc_score = ScamdocService.new(params["query"]).scamdoc_score
       @search.https = ScamdocService.new(params["query"]).https_presence
       @search.save
     end
