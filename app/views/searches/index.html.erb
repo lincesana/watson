@@ -1,7 +1,7 @@
-<div class="wrapper" data-controller="search">
+<div class="wrapper justify-content-center col-12 col-md-6 col-lg-4" data-controller="search" >
 
   <div class="display-search" data-search-target="displaySearch">
-    <div class="searching", width="100%">
+    <div class="searching">
        <h2 class="animated-text" data-text="Analysing...">Analysing...</h2>
     </div>
     <div class="glass-position">
@@ -21,7 +21,7 @@
     <div>
       <%= form_with url: "/searches", method: :post, data: { search_target: "mainSearch" } do |form| %>
 
-        <div class ="d-flex">
+        <div class ="d-flex justify-content-center">
           <%= form.text_field :query, class: "form-input" %>
           <div>
             <%= button_tag content_tag(:i, "", class:"fa-solid fa-magnifying-glass"), type: "submit", data: { action: "click->search#displaySearch" }, id: "lupa" %>
