@@ -28,99 +28,61 @@ end
 puts "Finished!"
 puts "Creating searches..."
 
-amazon = {
-  website_name: "Amazon",
-  website_url: "www.amazon.es",
+puts "Creating websites..."
+
+website1 = {
+  website_url: "www.veja-stores.com",
+  trustpilot_verification: false,
+  scamdoc_score: 1,
+  https: true,
+  rating: 1
+}
+
+website2 = {
+  website_url: "www.ikea.es",
   trustpilot_verification: true,
-  scandoc: 99,
+  scamdoc_score: 80,
+  https: true,
+  rating: 8
+}
+
+website3 = {
+  website_url: "www.notenom.com",
+  trustpilot_verification: true,
+  scamdoc_score: 13,
+  https: true,
+  rating: 5
+}
+
+website4 = {
+  website_url: "www.gardentm.com",
+  trustpilot_verification: true,
+  scamdoc_score: 56,
+  https: true,
+  rating: 7
+}
+
+website5 = {
+  website_url: "www.amazon.com",
+  trustpilot_verification: true,
+  scamdoc_score: 99,
   https: true,
   rating: 9
 }
 
-aliexpress = {
-  website_name: "Ali Express",
+website6 = {
   website_url: "es.aliexpress.com",
   trustpilot_verification: true,
-  scandoc: 77,
+  scamdoc_score: 77,
   https: true,
-  rating: 8
-}
+  rating: 8 }
 
-ebay = {
-  website_name: "Ebay",
-  website_url: "www.ebay.es",
-  trustpilot_verification: true,
-  scandoc: 84,
-  https: true,
-  rating: 7
-}
-
-fnac = {
-  website_name: "Fnac",
-  website_url: "www.fnac.es",
-  trustpilot_verification: true,
-  scandoc: 56,
-  https: true,
-  rating: 7
-}
-mim = {
-  website_name: "mim",
-  website_url: "mimshoes.com",
-  trustpilot_verification: false,
-  scandoc: 45,
-  https: true,
-  rating: 6
-}
-ganzitos = {
-  website_name: "Ganzitos Shoes",
-  website_url: "ganzitos.com",
-  trustpilot_verification: true,
-  scandoc: 13,
-  https: true,
-  rating: 5
-}
-veja = {
-  website_name: "Veja Espana",
-  website_url: "www.vejaespana.co",
-  trustpilot_verification: false,
-  scandoc: 1,
-  https: true,
-  rating: 1
-}
-eusale = {
-  website_name: "Eusale Coat",
-  website_url: "Eusalecoat.com",
-  trustpilot_verification: false,
-  scandoc: 1,
-  https: true,
-  rating: 1
-}
-
-yowtaero = {
-  website_name: "Yowtaero",
-  website_url: "www.yowtaero.com",
-  trustpilot_verification: false,
-  scandoc: 1,
-  https: true,
-  rating: 1
-
-}
-ikea = {
-  website_name: "IKEA Espana",
-  website_url: "www.ikea.es",
-  trustpilot_verification: true,
-  scandoc: 80,
-  https: true,
-  rating: 8
-
-}
-
-[amazon, aliexpress, ebay, fnac, mim, ganzitos, veja, eusale, yowtaero, ikea].each do |attributes|
-  search = Search.create!(attributes)
-  bookmark = Bookmark.create(search_id: search.id, user_id: User.ids.sample)
-  puts "Created #{search.website_name}"
-  puts "Created #{bookmark}"
+[website1, website2, website3, website4, website5, website6].each do |attributes|
+  website = Website.create!(website_url: attributes[:website_url])
+  search = Search.create!(website_id: website.id, trustpilot_verification: attributes[:trustpilot_verification], scamdoc_score: attributes[:scamdoc_score], https: attributes[:https], rating: attributes[:rating])
+    bookmark = Bookmark.create(search_id: search.id, user_id: User.ids.sample)
+    puts "Created #{bookmark}"
+  puts "Created #{website.website_url}"
 end
 puts "Finished!"
-
-puts "Creating bookmarks..."
+puts "Creating websites..."
