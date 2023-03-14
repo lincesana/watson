@@ -11,32 +11,36 @@
     </div>
   </div>
 
-  <div class="display-slogan" data-search-target="displaySlogan">
-    <div class="slogan" >
-      <h1>We check the <br>red flags.</h1>
-      <h1><strong>You shop <br>safely.</strong></h1>
-    </div>
+  <div class="show-card">
+    <div class="display-slogan" data-search-target="displaySlogan">
+      <div class="slogan" >
+        <h1>We check the <br>red flags.</h1>
+        <h1><strong>You shop safely.</strong></h1>
+      </div>
 
 
-    <div>
-      <%= form_with url: "/searches", method: :post, data: { search_target: "mainSearch" } do |form| %>
 
-        <div class ="d-flex">
-          <%= form.text_field :query, class: "form-input" %>
-          <div>
-            <%= button_tag content_tag(:i, "", class:"fa-solid fa-magnifying-glass"), type: "submit", data: { action: "click->search#displaySearch" }, id: "lupa" %>
+      <div>
+        <%= form_with url: "/searches", method: :post, data: { search_target: "mainSearch" } do |form| %>
+
+          <div class ="d-flex">
+            <%= form.text_field :query, class: "form-input" %>
+            <div>
+              <%= button_tag content_tag(:i, "", class:"fa-solid fa-magnifying-glass"), type: "submit", data: { action: "click->search#displaySearch" }, id: "lupa" %>
+            </div>
           </div>
-        </div>
-        <p id= info-search> Write your shop's <strong>web address</strong> above</p>
-      <% end %>
+          <p id= info-search> Write your shop's <strong>web address</strong> above</p>
+        <% end %>
+     </div>
     </div>
+  </div>
 
-    <div>
+    <div class= "index-card">
       <p id= top-searches> Top <strong>3</strong> searches:</p>
       <% @searches.each do |search| %>
 
         <%= link_to search_path(search) do %>
-        <div class= "index-card">
+        <div class= "show-card">
           <p> <strong><%=search.website.website_url%></strong></p>
            <%# <p> <%=website_url %</p>
           <%# <p>Rating: <%= search.rating % >/10 </p> %>
@@ -44,6 +48,7 @@
         </div>
         <% end %>
       <% end %>
+    </div>
     </div>
 
 
