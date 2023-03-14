@@ -1,14 +1,17 @@
 .show-card {
-  background-color: $darkgreen;
+  background-color: #B6D9C9;
   color: black;
-  font-size: 15px;
+  font-size: 13px;
   font-weight: bold;
   // text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  border-radius: 5px;
+  border-radius: 20px;
   width: 90%;
   overflow: hidden;
   padding: 8px;
-  margin:auto;
+  margin:14px;
+  align-items: center;
+  text-align: center;
+
 }
 .show-card ul {
   margin: 0;
