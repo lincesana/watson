@@ -9,9 +9,13 @@ Rails.application.routes.draw do
 
   resources :searches do
     resources :bookmarks, only: %i[create]
+    resources :reviews, only: %i[create]
   end
+  
   resources :bookmarks, only: %i[index show destroy] do
     post "/bookmarks_categories", to: "bookmark_categories#create", as: :categories
   end
+  
   resources :user_categories, only: %i[new create destroy]
+  resources :reviews, only: %i[destroy]
 end
