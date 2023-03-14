@@ -118,6 +118,7 @@ GEM
       sassc (~> 2.0)
     globalid (1.1.0)
       activesupport (>= 5.0)
+    headless (2.3.1)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
     i18n (1.12.0)
@@ -256,6 +257,9 @@ GEM
     unf_ext (0.0.8.2)
     warden (1.2.9)
       rack (>= 2.0.9)
+    watir (7.2.2)
+      regexp_parser (>= 1.2, < 3)
+      selenium-webdriver (~> 4.2)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -287,6 +291,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   font-awesome-sass (~> 6.1)
+  headless
   instagram_basic_display
   jbuilder
   jsbundling-rails
@@ -301,6 +306,7 @@ DEPENDENCIES
   stimulus-rails
   turbo-rails
   tzinfo-data
+  watir
   web-console
   webdrivers
 
