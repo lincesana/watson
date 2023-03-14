@@ -1,8 +1,11 @@
 class BookmarksController < ApplicationController
-  before_action :set_bookmarks, except: %i[index destroy]
+  before_action :set_bookmarks, except: %i[index create destroy]
+  before_action :set_search, only: %i[create]
 
   def index
     @bookmarks = Bookmark.where(user: current_user)
+
+    @bookmarks = @bookmarks.select { |p| p.categories.ids.include?(params[:category].to_i) } if params[:category].present?
   end
 
   def new
@@ -10,10 +13,11 @@ class BookmarksController < ApplicationController
   end
 
   def create
-    @bookmark = Bookmark.new(bookmark_params)
+    @bookmark = Bookmark.new
+    @bookmark.user = current_user
     @bookmark.search = @search
     if @bookmark.save
-      redirect_to bookmarks
+      redirect_to bookmarks_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +36,7 @@ class BookmarksController < ApplicationController
   private
 
   def bookmark_params
-    params.require(:bookmark).permit(:website_name, :search_id)
+    params.require(:bookmark).permit(:search_id)
   end
 
   def set_search

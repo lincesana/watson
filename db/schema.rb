@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_13_103749) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_14_104204) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookmark_categories", force: :cascade do |t|
+    t.bigint "bookmark_id", null: false
+    t.bigint "user_category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bookmark_id"], name: "index_bookmark_categories_on_bookmark_id"
+    t.index ["user_category_id"], name: "index_bookmark_categories_on_user_category_id"
+  end
 
   create_table "bookmarks", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -44,6 +53,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_13_103749) do
     t.index ["website_id"], name: "index_searches_on_website_id"
   end
 
+  create_table "user_categories", force: :cascade do |t|
+    t.string "name"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_categories_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -63,9 +80,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_13_103749) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "bookmark_categories", "bookmarks"
+  add_foreign_key "bookmark_categories", "user_categories"
   add_foreign_key "bookmarks", "searches"
   add_foreign_key "bookmarks", "users"
   add_foreign_key "reviews", "users"
   add_foreign_key "reviews", "websites"
   add_foreign_key "searches", "websites"
+  add_foreign_key "user_categories", "users"
 end
