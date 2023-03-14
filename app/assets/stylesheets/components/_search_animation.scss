@@ -32,9 +32,9 @@
 
 .spinner {
   position: absolute;
-  left: 44px;
-  top: 2px;
-  background-color: purple;
+  left: calc(50% - 97.5px);
+  top: calc(50% - 97.5px);
+  background-color: blue;
   width: 195px;
   height: 195px;
   border-radius: 50%;
@@ -71,7 +71,10 @@
   position: absolute;
   margin-left: auto;
   margin-right: auto;
-  top: 180px;
+  text-align: center;
+  @media(min-width: 1000px) {
+    left: calc(50% - 170px)
+  }
 }
 
 .display-search {

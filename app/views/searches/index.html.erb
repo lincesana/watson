@@ -1,41 +1,36 @@
 <div class="wrapper justify-content-center col-12 col-md-6 col-lg-4" data-controller="search" >
 
-  <div class="display-search" data-search-target="displaySearch">
+  <div class="display-search" data-search-target="displaySearch" style="
+    height: 350px;">
     <div class="searching">
        <h2 class="animated-text" data-text="Analysing...">Analysing...</h2>
     </div>
     <div class="glass-position">
       <div class="spinner">
       </div>
-      <%= image_tag "search_v2.png", class: "glass", alt: "search", width: "246px" %>
+      <%= image_tag "search_v2.png", class: "glass", alt: "search", width: "300px" %>
     </div>
   </div>
 
-  <div class="show-card">
-    <div class="display-slogan" data-search-target="displaySlogan">
-      <div class="slogan" >
-        <h1>We check the <br>red flags.</h1>
-        <h1><strong>You shop safely.</strong></h1>
-      </div>
+  <div class="display-slogan" data-search-target="displaySlogan">
+    <div class="slogan" >
+      <h1>We check the <br>red flags.</h1>
+      <h1><strong>You shop safely.</strong></h1>
+    </div>
 
-
-
-
-      <div>
-        <%= form_with url: "/searches", method: :post, data: { search_target: "mainSearch" } do |form| %>
-        <div class ="d-flex justify-content-center">
-          <%= form.text_field :query, class: "form-input" %>
-          <div>
-            <%= button_tag content_tag(:i, "", class:"fa-solid fa-magnifying-glass"), type: "submit", data: { action: "click->search#displaySearch" }, id: "lupa" %>
-
-          </div>
-          <p id= info-search> Write your shop's <strong>web address</strong> above</p>
+    <div>
+      <%= form_with url: "/searches", method: :post, data: { search_target: "mainSearch" } do |form| %>
+      <div class ="d-flex justify-content-center">
+        <%= form.text_field :query, class: "form-input" %>
+        <div>
+          <%= button_tag content_tag(:i, "", class:"fa-solid fa-magnifying-glass"), type: "submit", data: { action: "click->search#displaySearch" }, id: "lupa" %>
+        </div>
         <% end %>
-     </div>
+      </div>
+      <p id= info-search> Write your shop's <strong>web address</strong> above</p>
     </div>
-  </div>
 
-    <div class= "index-card">
+    <div class= "index-card" style="margin: 10px 10px;">
       <p id= top-searches> Top <strong>3</strong> searches:</p>
       <% @searches.each do |search| %>
 
@@ -49,11 +44,10 @@
         <% end %>
       <% end %>
     </div>
-    </div>
-
 
     <div class="line">
     </div>
+
   </div>
 
 </div>
