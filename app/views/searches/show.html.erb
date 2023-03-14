@@ -3,7 +3,7 @@
    <div class="watson-rating-card mt-3 bg-white">
     <p><strong>You searched</strong></p>
     <h3><strong>"<%=@search.website_url %>"</strong></h3>
-    <% if @search.website_url == "amazon.com" %>
+    <% if @search.website_url == "amazon.com" || @search.website_url == "nike.com" %>
       <i class="fa-regular fa-thumbs-up", id="thumbs-up"></i>
       <p class="mt-3 mb-5">Rating score is <strong>97%</strong></p>
     <% elsif @search.website_url == "veja.com" %>
@@ -11,7 +11,7 @@
       <p class="mt-3 mb-5">Rating score is <strong>87%</strong></p>
     <% else %>
       <i class="fa-regular fa-thumbs-down", id="thumbs-down"></i>
-      <p class="mt-3 mb-5">Rating score is <strong>27%</strong></p>
+      <h2 class="mt-3 mb-5">Total rating score is <strong>27%</strong></h2>
     <% end %>
   </div>
 
@@ -22,12 +22,32 @@
     <div class="show-card">
       <div class="accordion" id="accordionExample">
         <div class="accordion-item">
-          <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              Trustpilot Verification : <%= @search.trustpilot_verification %>
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              <% if @search.https == true %>
+              HTTPS protocol detected
+              <% else %>
+              No HTTPS protocol detected
+              <% end %>
             </button>
           </h2>
-          <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+              Hypertext transfer protocol secure (HTTPS) is the secure version of HTTP, which is the primary protocol used to send data between a web browser and a website. HTTPS is encrypted in order to increase security of data transfer.
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              <% if @search.trustpilot_verification == true%>
+              Verified company on Trustpilot
+              <% else %>
+              Not verified on Trustpilot
+              <% end %> <%=  %>
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
             <div class="accordion-body">
               Trustpilot is a digital platform that allows customers to review a business from which they've purchased a product or service or contacted customer service.
             </div>
@@ -36,24 +56,12 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingTwo">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              ScamDoc Score : <%= @search.scamdoc_score %>
+              ScamDoc Score : <%= @search.scamdoc_score %> / 99
             </button>
           </h2>
           <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
             <div class="accordion-body">
               Scamdoc is a web tool that evaluates "digital identities" reliability.
-            </div>
-          </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              HTTPS Presence : <%= @search.https %>
-            </button>
-          </h2>
-          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              Hypertext transfer protocol secure (HTTPS) is the secure version of HTTP, which is the primary protocol used to send data between a web browser and a website. HTTPS is encrypted in order to increase security of data transfer.
             </div>
           </div>
         </div>
