@@ -28,6 +28,7 @@ class SearchesController < ApplicationController
 
   def show
     @search = Search.find(params[:id])
+    @review = Review.new(website: @website)
   end
 
   private
