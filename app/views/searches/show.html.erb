@@ -110,7 +110,7 @@
 
  <div style="text-align:center">
  <p style="text-align:center;" class= "mt-3 mb-5">Add this search to bookmarks:</strong></p>
-    <%= link_to "Save search", bookmarks_path, class:"btn-yellow" %>
+    <%= link_to "Save search", search_bookmarks_path(@search), data: {turbo_method: :post}, class:"btn-yellow" %>
   </div>
 
   <div class="line">
