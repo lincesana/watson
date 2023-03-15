@@ -11,16 +11,16 @@ class SearchesController < ApplicationController
     @trustpilot_score = 0
     @watson_rating = 0
 
-    # unless @website && @search.present? && @search.updated_at < 30.days.ago
-    @search = Search.new
-    @website = Website.create(website_url: params["query"])
-    @search.website = @website
-    @search.trustpilot_verification = TrustpilotService.new(params["query"]).trustpilot.present?
-    @search.scamdoc_score = ScamdocService.new(params["query"]).scamdoc_score
-    @search.https = ScamdocService.new(params["query"]).https_presence
-    pp @watson_rating = scamdoc_weight + trustpilot_weight
-    @search.save
-    # end
+    unless @website && @search.present? && @search.updated_at < 30.days.ago
+      @search = Search.new
+      @website = Website.create(website_url: params["query"])
+      @search.website = @website
+      @search.trustpilot_verification = TrustpilotService.new(params["query"]).trustpilot.present?
+      @search.scamdoc_score = ScamdocService.new(params["query"]).scamdoc_score
+      @search.https = ScamdocService.new(params["query"]).https_presence
+      pp @watson_rating = scamdoc_weight + trustpilot_weight
+      @search.save
+    end
 
     if @search.id
       redirect_to search_path(@search)
