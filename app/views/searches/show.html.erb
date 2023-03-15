@@ -1,21 +1,28 @@
 
 <div class="wrapper">
    <div class="watson-rating-card mt-3 bg-white">
-    <p><strong>You searched</strong></p>
-    <h3><strong>"<%=@search.website_url %>"</strong></h3>
+    <h2 class="show-page-font">You searched</h2>
+    <h2 class="show-page-font"><strong>'<%=@search.website_url %>'</strong></h2>
     <% if @search.rating > 59 %>
       <i class="fa-regular fa-thumbs-up", id="thumbs-up"></i>
-      <p class="mt-3 mb-5">Rating score is: <strong> <%= @search.rating %>% safe </strong></p>
+      <p class="show-page-font mt-3 mb-5">Rating score is: <strong> <%= @search.rating %>% safe </strong></p>
     <% else %>
       <i class="fa-regular fa-thumbs-down", id="thumbs-down"></i>
-      <h2 class="mt-3 mb-5">Rating score is: <strong> <%= @search.rating %>% safe</strong></h2>
+      <p class="show-page-font mt-3 mb-5">Rating score is: <strong> <%= @search.rating %>% safe</strong></p>
     <% end %>
   </div>
 
+  <div style="text-align:center">
+    <p style="text-align:center;">Add this search to your bookmarks:</strong></p>
+    <%= link_to "Save search", search_bookmarks_path(@search), data: {turbo_method: :post}, class:"btn-green" %>
+  </div>
 
-<p style="text-align:center;" class="mt-3 mb-5">Read more details:</strong></p>
+  <div class="thinline mt-5">
+  </div>
 
-  <%# <div class="card-container"> %>
+  <h2 style="text-align:center;" class="mt-5">Read more details:</strong></h2>
+
+    <div class="card-container">
       <div class="accordion" id="accordionExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingThree">
@@ -62,13 +69,10 @@
           </div>
         </div>
       </div>
-  <%# </div> %>
-
-
-
+    </div>
 
   <div class="col-12 col-sm-6">
-        <h3>Read opinions:</h3>
+        <h3>Reviews:</h3>
         <% if @search.reviews.empty? %>
           <small><em class="text-muted">Be the first one to review this shop</em></small>
         <% end %>
@@ -88,22 +92,15 @@
 
   <div class="col-12 col-sm-6">
         <div class="bg-white rounded p-3">
-          <h5>Add your review</h5>
           <%= simple_form_for [@search, @review] do |f| %>
-            <%= f.input :comment, placeholder: "Add your review here..." %>
-            <%= f.submit class:"btn btn-flat" %>
+            <%= f.input :comment, label: false, placeholder: "Add your review here..." %>
+            <%= f.submit class:"btn btn-blue" %>
           <% end %>
         </div>
   </div>
 
- <div style="text-align:center">
-  <p style="text-align:center;" class= "mt-3 mb-5">Add this search to bookmarks:</strong></p>
-      <%= link_to "Save search", search_bookmarks_path(@search), data: {turbo_method: :post}, class:"btn-green" %>
+  <div class="thinline mt-4">
   </div>
-
-  <div class="line">
-  </div>
-
 
   <div style="text-align:center" class= "mt-5";>
     <%= link_to "Search again", searches_path, class: "btn-green" %>

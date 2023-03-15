@@ -12,16 +12,16 @@ class SearchesController < ApplicationController
     # @trustpilot_score = 0
     # @rating = 0
 
-    unless @website && @search.present? && @search.updated_at < 30.days.ago
-      @search = Search.new
-      @website = Website.create(website_url: query)
-      @search.website = @website
-      @search.trustpilot_verification = TrustpilotService.new(query).trustpilot.present?
-      @search.scamdoc_score = ScamdocService.new(query).scamdoc_score
-      @search.https = ScamdocService.new(query).https_presence
-      @search.rating = scamdoc_weight + trustpilot_weight
-      @search.save
-    end
+    # unless @website && @search.present? && @search.updated_at < 30.days.ago
+    @search = Search.new
+    @website = Website.create(website_url: query)
+    @search.website = @website
+    @search.trustpilot_verification = TrustpilotService.new(query).trustpilot.present?
+    @search.scamdoc_score = ScamdocService.new(query).scamdoc_score
+    @search.https = ScamdocService.new(query).https_presence
+    @search.rating = scamdoc_weight + trustpilot_weight
+    @search.save
+    # end
 
     if @search.id
       redirect_to search_path(@search)
@@ -51,7 +51,7 @@ class SearchesController < ApplicationController
   end
 
   def trustpilot_weight
-    if @search.trustpilot_verification == true
+    if @search.trustpilot_verification == true && @search.scamdoc_score <= 90
       @trustpilot_score = 20
     else
       @trustpilot_score = 0
