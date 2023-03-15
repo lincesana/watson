@@ -1,0 +1,25 @@
+.accordion-item p {
+  color:black
+}
+
+.accordion-button {
+  display: flex;
+  background-color: #EBF0DE !important;
+
+}
+.accordion-button p {
+  flex-grow: 1;
+  text-align: center;
+}
+
+.accordion-item {
+ // margin-top: 15px;
+  width: 90%;
+  //margin-left: 5px;
+  border-radius: 5px;
+  margin: 15px auto;
+
+}
+.accordion-header {
+  background-color: #EBF0DE;
+}
