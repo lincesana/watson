@@ -15,9 +15,9 @@
   <div class="front-container">
     <div class="display-slogan" data-search-target="displaySlogan">
       <div class="slogan" >
-        <h1 style="text-align: left; font: size 30px;">We check the <br><strong><span style="color: #87deff">red flags.</span></strong>
-        <br>You shop <strong><span style="color: #87deff">safely.</span></strong></h1>
-        <h1></h1>
+        <h1>We check the <br><strong><span>red flags.</span></strong>
+        <br>You shop <strong>
+        <br><span>safely.</span></strong></h1>
       </div>
 
       <div>
@@ -25,24 +25,25 @@
         <div class ="d-flex justify-content-center">
           <%= form.text_field :query, class: "form-input" %>
           <div>
-            <%= button_tag content_tag(:i, "", class:"fa-solid fa-magnifying-glass"), type: "submit", data: { action: "click->search#displaySearch" }, id: "lupa" %>
+            <%= button_tag content_tag(:div, content_tag(:i, "", class:"fa-solid fa-magnifying-glass"), class: "circle"), type: "submit", data: { action: "click->search#displaySearch" }, id: "lupa" %>
           </div>
           <% end %>
         </div>
         <p id= info-search> Write your shop's <strong>web address</strong> above</p>
       </div>
+          <div class="thinline">
     </div>
+    </div>
+  </div>
 
-    <div class= "index-card" style="margin: 10px 10px;">
-      <p id= top-searches> Top <strong>3</strong> searches:</p>
+    <div class="index-card" style="margin: 10px 10px;">
+      <p id=top-searches> Top <strong>3</strong> searches:</p>
       <% @searches.each do |search| %>
-
         <%= link_to search_path(search) do %>
-        <div class= "show-card">
+        <div class="show-card">
           <p> <strong><%=search.website.website_url%></strong></p>
            <%# <p> <%=website_url %</p>
           <%# <p>Rating: <%= search.rating % >/10 </p> %>
-
         </div>
         <% end %>
       <% end %>
@@ -50,7 +51,4 @@
 
     <div class="line">
     </div>
-
-  </div>
-
 </div>
