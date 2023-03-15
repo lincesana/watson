@@ -9,8 +9,8 @@ class SearchesController < ApplicationController
     query = params["query"].downcase if params["query"].present?
     @website = Website.find_by(website_url: query)
     @search = Search.where(website: @website).last if @website
-    @trustpilot_score = 0
-    @watson_rating = 0
+    # @trustpilot_score = 0
+    # @rating = 0
 
     unless @website && @search.present? && @search.updated_at < 30.days.ago
       @search = Search.new
