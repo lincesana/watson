@@ -6,19 +6,20 @@ class SearchesController < ApplicationController
   end
 
   def create
-    @website = Website.find_by(website_url: params["query"])
+    query = params["query"].downcase if params["query"].present?
+    @website = Website.find_by(website_url: query)
     @search = Search.where(website: @website).last if @website
     @trustpilot_score = 0
     @watson_rating = 0
 
     unless @website && @search.present? && @search.updated_at < 30.days.ago
       @search = Search.new
-      @website = Website.create(website_url: params["query"])
+      @website = Website.create(website_url: query)
       @search.website = @website
-      @search.trustpilot_verification = TrustpilotService.new(params["query"]).trustpilot.present?
-      @search.scamdoc_score = ScamdocService.new(params["query"]).scamdoc_score
-      @search.https = ScamdocService.new(params["query"]).https_presence
-      pp @watson_rating = scamdoc_weight + trustpilot_weight
+      @search.trustpilot_verification = TrustpilotService.new(query).trustpilot.present?
+      @search.scamdoc_score = ScamdocService.new(query).scamdoc_score
+      @search.https = ScamdocService.new(query).https_presence
+      @search.rating = scamdoc_weight + trustpilot_weight
       @search.save
     end
 
@@ -34,7 +35,14 @@ class SearchesController < ApplicationController
     @review = Review.new(website: @website)
   end
 
+  private
+
+  def search_params
+    params.require(:search).permit(:website_name, :website_url, :trustpilot_verification, :scandoc, :https, :rating)
+  end
+
   def scamdoc_weight
+    pp @search
     if @search.scamdoc_score > 90
       @search.scamdoc_score
     else
@@ -48,11 +56,5 @@ class SearchesController < ApplicationController
     else
       @trustpilot_score = 0
     end
-  end
-
-  private
-
-  def search_params
-    params.require(:search).permit(:website_name, :website_url, :trustpilot_verification, :scandoc, :https, :rating)
   end
 end
