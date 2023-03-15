@@ -4,8 +4,13 @@
 }
 
 .slogan h1 {
-  font-size: 30px;
   padding-bottom: 12px;
   margin-bottom: 25px;
   margin-top:25px;
+  text-align: left;
+  font-size: 36px;
+
+  span {
+    color: #87deff;
+  }
 }
