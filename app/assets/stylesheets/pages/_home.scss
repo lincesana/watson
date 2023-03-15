@@ -35,12 +35,27 @@
   i {
   color: white;
   }
-
-  .circle {
-  content: "";
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background-color: $blue;
+  .circle{
+    background-color: $blue;
+  }
 }
+
+.circle {
+content: "";
+width: 34px;
+height: 34px;
+border-radius: 50%;
+
+}
+
+#arrow {
+  border: none;
+  background-color: transparent;
+  color: $blue;
+  i {
+    margin-top: 25%;
+  }
+  .circle{
+    background-color: black;
+  }
 }

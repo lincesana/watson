@@ -32,18 +32,20 @@
         <p id= info-search> Write your shop's <strong>web address</strong> above</p>
       </div>
           <div class="thinline">
+      </div>
     </div>
-    </div>
-  </div>
 
     <div class="index-card" style="margin: 10px 10px;">
       <p id=top-searches> Top <strong>3</strong> searches:</p>
       <% @searches.each do |search| %>
         <%= link_to search_path(search) do %>
-        <div class="show-card">
+        <div class="show-card d-flex justify-content-between">
           <p> <strong><%=search.website.website_url%></strong></p>
            <%# <p> <%=website_url %</p>
           <%# <p>Rating: <%= search.rating % >/10 </p> %>
+          <div>
+            <%= button_tag content_tag(:div, content_tag(:i, "", class:"fa-solid fa-arrow-right"), class: "circle"), id: "arrow" %>
+          </div>
         </div>
         <% end %>
       <% end %>
@@ -51,4 +53,6 @@
 
     <div class="line">
     </div>
+  </div>
+
 </div>
