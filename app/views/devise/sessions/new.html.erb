@@ -1,7 +1,8 @@
 <div class="login-container">
-  <h2>Hello, <strong>again!</strong></h2>
-
-  <p>In order to see your searches</p>
+  <%# <div class= "login-instructions"> %>
+    <h2>Hello, <strong>again</strong></h2>
+    <p>Login to see your searches</p>
+  <%# </div> %>
 </div>
 
 <div class="login-form-container">
@@ -16,11 +17,11 @@
                     autofocus: true,
                     input_html: { autocomplete: "Userame" }%>
         <%= f.input :email,
-                    required: false,
+                    required: true,
                     autofocus: true,
                     input_html: { autocomplete: "email" } %>
         <%= f.input :password,
-                    required: false,
+                    required: true,
                     input_html: { autocomplete: "current-password" } %>
         <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
       </div>
