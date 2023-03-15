@@ -1,24 +1,38 @@
 .login-container {
   width: 80%;
-  background-color: #f4f6ee;
-  padding: 20px;
+  background-color: white;
+  padding: 10px;
   border-radius: 20px;
-  margin: 30px;
+  margin: 5px;
   text-align: left;
   & > * {
     margin-bottom: 20px;
     margin-top: 20px;
   }
+  h2 {
+    font-family: $secondary-header-font;
+    font-size: 24px
+  }
+
+  p {
+      font-family: $secondary-header-font;
+      font-size: 18px;
+      margin-bottom: 5px;
+  }
 }
 
 .login-form-container {
-  background-color: #f4f6ee;
+  background-color: $lightcream;
   width: 80%;
   border-radius: 20px;
   margin: 20px;
   padding: 30px;
   padding-bottom: 40px;
-    .btn-green {
-      padding-top: 20px;
+
+
+    h2 {
+      font-family: $secondary-header-font;
+      font-size: 22px;
+      margin-bottom: 22px;
     }
 }
