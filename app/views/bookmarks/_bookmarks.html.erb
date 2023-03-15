@@ -1,0 +1,26 @@
+<% bookmarks.each do |bookmark| %>
+        <div class="accordion-item" data-controller="accordion">
+          <h2 class="accordion-header" id="header_<%= dom_id(bookmark) %>">
+            <button class="accordion-button" type="button"  data-action="click->accordion#toggleOpen" >
+              <p> <%= bookmark.search.website_url %></p>
+            </button>
+          </h2>
+          <div  data-accordion-target="body" hidden>
+            <div class="accordion-body">
+            ...
+            </div>
+            <%= form_with url: bookmark_categories_path(bookmark), method: :post do |f| %>
+        <%= f.select :user_category_id, current_user.categories.map {|m| [m.name, m.id]} %>
+        <%= f.submit "Add to Category" %>
+        <%end %>
+        <%= link_to "delete this Bookmark", bookmark_path(bookmark), data: {turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this bookmark?"}%>
+        </div>
+<% end %>
+
+  <div style="text-align:center" class= "mt-5";>
+    <%= link_to "Search again", searches_path, class: "btn-green" %>
+  </div>
+
+  <div style="text-align:center" class= "mt-5";>
+    <%= link_to "Create Categories", new_user_category_path, class: "btn-green" %>
+  </div>

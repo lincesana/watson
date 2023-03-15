@@ -6,6 +6,10 @@ class BookmarksController < ApplicationController
     @bookmarks = Bookmark.where(user: current_user)
 
     @bookmarks = @bookmarks.select { |p| p.categories.ids.include?(params[:category].to_i) } if params[:category].present?
+    respond_to do |format|
+      format.html
+      format.text { render partial: "bookmarks", locals: {bookmarks: @bookmarks }, formats: [:html] }
+    end
   end
 
   def new
