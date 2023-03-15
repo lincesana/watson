@@ -20,6 +20,7 @@ class ScamdocService
     # puts new_page.uri
     value = new_page.search("#final_score").attribute('value').value.to_i
     @scamdoc_rating = value
+    # pp scamdoc_weight
   end
 
   def https_presence
@@ -32,8 +33,6 @@ class ScamdocService
     # puts new_page.uri
     https_check = new_page.search(".interrogation-list").inner_html.match?(/HTTPS/)
     @https = https_check
-    excellence_check = new_page.search(".result-text-container").inner_html.match?(/Excellent trust index/)
-    @excellent_score = excellence_check
-    @https = @excellent_score if @excellent_score == true
+    @https = new_page.search(".result-text-container").inner_html.match?(/Excellent trust index/) unless @https
   end
 end
