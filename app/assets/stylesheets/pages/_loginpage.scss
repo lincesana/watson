@@ -1,0 +1,24 @@
+.login-container {
+  width: 80%;
+  background-color: #f4f6ee;
+  padding: 20px;
+  border-radius: 20px;
+  margin: 30px;
+  text-align: left;
+  & > * {
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+}
+
+.login-form-container {
+  background-color: #f4f6ee;
+  width: 80%;
+  border-radius: 20px;
+  margin: 20px;
+  padding: 30px;
+  padding-bottom: 40px;
+    .btn-green {
+      padding-top: 20px;
+    }
+}
