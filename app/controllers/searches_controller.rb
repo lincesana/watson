@@ -46,7 +46,7 @@ class SearchesController < ApplicationController
     if @search.trustpilot_verification == true
       @trustpilot_score = 20
     else
-      @trustpilot_score = 20
+      @trustpilot_score = 0
     end
   end
 
