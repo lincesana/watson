@@ -8,8 +8,8 @@ class SearchesController < ApplicationController
   def create
     @website = Website.find_by(website_url: params["query"])
     @search = Search.where(website: @website).last if @website
-    @trustpilot_score = 0
-    @watson_rating = 0
+    # @trustpilot_score = 0
+    # @rating = 0
 
     unless @website && @search.present? && @search.updated_at < 30.days.ago
       @search = Search.new
@@ -18,7 +18,7 @@ class SearchesController < ApplicationController
       @search.trustpilot_verification = TrustpilotService.new(params["query"]).trustpilot.present?
       @search.scamdoc_score = ScamdocService.new(params["query"]).scamdoc_score
       @search.https = ScamdocService.new(params["query"]).https_presence
-      pp @watson_rating = scamdoc_weight + trustpilot_weight
+      @search.rating = scamdoc_weight + trustpilot_weight
       @search.save
     end
 
