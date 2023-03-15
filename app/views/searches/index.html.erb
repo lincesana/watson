@@ -12,22 +12,25 @@
     </div>
   </div>
 
-  <div class="display-slogan" data-search-target="displaySlogan">
-    <div class="slogan" >
-      <h1>We check the <br>red flags.</h1>
-      <h1><strong>You shop safely.</strong></h1>
-    </div>
-
-    <div>
-      <%= form_with url: "/searches", method: :post, data: { search_target: "mainSearch" } do |form| %>
-      <div class ="d-flex justify-content-center">
-        <%= form.text_field :query, class: "form-input" %>
-        <div>
-          <%= button_tag content_tag(:i, "", class:"fa-solid fa-magnifying-glass"), type: "submit", data: { action: "click->search#displaySearch" }, id: "lupa" %>
-        </div>
-        <% end %>
+  <div class="front-container">
+    <div class="display-slogan" data-search-target="displaySlogan">
+      <div class="slogan" >
+        <h1 style="text-align: left; font: size 30px;">We check the <br><strong><span style="color: #87deff">red flags.</span></strong>
+        <br>You shop <strong><span style="color: #87deff">safely.</span></strong></h1>
+        <h1></h1>
       </div>
-      <p id= info-search> Write your shop's <strong>web address</strong> above</p>
+
+      <div>
+        <%= form_with url: "/searches", method: :post, data: { search_target: "mainSearch" } do |form| %>
+        <div class ="d-flex justify-content-center">
+          <%= form.text_field :query, class: "form-input" %>
+          <div>
+            <%= button_tag content_tag(:i, "", class:"fa-solid fa-magnifying-glass"), type: "submit", data: { action: "click->search#displaySearch" }, id: "lupa" %>
+          </div>
+          <% end %>
+        </div>
+        <p id= info-search> Write your shop's <strong>web address</strong> above</p>
+      </div>
     </div>
 
     <div class= "index-card" style="margin: 10px 10px;">
