@@ -1,11 +1,13 @@
 // CSS for the searching spinner
 .animated-text {
   position: relative;
-  left: 40%;
+  left: 33%;
+  width: 101%;
   font-size: 30px;
+  font-weight: bolder;
   line-height: 1.4;
-  color: #252839;
-  -webkit-text-stroke: 0.1vw #383d52;
+  color: $white;
+  // -webkit-text-stroke: 0.1vw #383d52;
 }
 
 .animated-text::before {
@@ -16,8 +18,8 @@
   width: 0;
   height: 100%;
   color: $blue;
-  -webkit-text-stroke: 0vw #383d52;
-  border-right: 2px solid $blue;
+  // -webkit-text-stroke: 0vw #383d52;
+  border-right: 2px solid $black;
   overflow: hidden;
   animation: animate 3s linear infinite;
 }
@@ -32,11 +34,11 @@
 
 .spinner {
   position: absolute;
-  left: calc(50% - 97.5px);
-  top: calc(50% - 97.5px);
+  left: calc(53% - 98px);
+  top: calc(53% - 98px);
   background-color: blue;
-  width: 195px;
-  height: 195px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   background: conic-gradient($black, $blue, $lightcream, $black);
   animation: spin 1.4s linear infinite;
