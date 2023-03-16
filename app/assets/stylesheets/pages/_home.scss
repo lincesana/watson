@@ -7,6 +7,20 @@
   }
 }
 
+.display-slogan {
+  .form-input:focus {
+    outline: none;
+    border-left: 1.5px $blue solid;
+    border-top: 1.5px $blue solid;
+    border-bottom: 1.5px $blue solid;
+    & + button {
+      border-top: 1.5px $blue solid !important;
+      border-bottom: 1.5px  $blue solid !important;
+      border-right: 1.5px $blue solid !important;
+    }
+  }
+}
+
 .form-input {
   border-radius: 5px 0px 0px 5px;
   border-right: none;
