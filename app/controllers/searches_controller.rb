@@ -7,21 +7,20 @@ class SearchesController < ApplicationController
 
   def create
     query = params["query"].downcase if params["query"].present?
-    @website = Website.find_by(website_url: query)
-    @search = Search.where(website: @website).last if @website
+    @website = Website.find_by(website_url: query) || Website.create(website_url: query)
+    @search = Search.where(website: @website)&.last
     # @trustpilot_score = 0
     # @rating = 0
 
-    # unless @website && @search.present? && @search.updated_at < 30.days.ago
-    @search = Search.new
-    @website = Website.create(website_url: query)
-    @search.website = @website
-    @search.trustpilot_verification = TrustpilotService.new(query).trustpilot.present?
-    @search.scamdoc_score = ScamdocService.new(query).scamdoc_score
-    @search.https = ScamdocService.new(query).https_presence
-    @search.rating = scamdoc_weight + trustpilot_weight
-    @search.save
-    # end
+    unless @search.present? && @search.updated_at < 30.days.ago
+      @search = Search.new
+      @search.website = @website
+      @search.trustpilot_verification = TrustpilotService.new(query).trustpilot.present?
+      @search.scamdoc_score = ScamdocService.new(query).scamdoc_score
+      @search.https = ScamdocService.new(query).https_presence
+      @search.rating = scamdoc_weight + trustpilot_weight
+      @search.save
+    end
 
     if @search.id
       redirect_to search_path(@search)
