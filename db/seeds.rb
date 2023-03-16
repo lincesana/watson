@@ -62,7 +62,7 @@ website4 = {
   trustpilot_verification: true,
   scamdoc_score: 56,
   https: true,
-  rating: 74
+  rating: 70
 }
 
 website5 = {
@@ -79,6 +79,7 @@ website6 = {
   scamdoc_score: 77,
   https: true,
   rating: 85 }
+
 
 [website1, website2, website3, website4, website5, website6].each do |attributes|
   website = Website.create!(website_url: attributes[:website_url])
