@@ -9,9 +9,12 @@ require "open-uri"
 
 puts "Cleaning database..."
 
+BookmarkCategory.destroy_all
+UserCategory.destroy_all
 User.destroy_all
 Search.destroy_all
 Bookmark.destroy_all
+
 
 puts "Creating users..."
 user1 = { username: "AryaStark", email: "123@mail.com", password: "123456" }
@@ -43,7 +46,7 @@ website2 = {
   trustpilot_verification: true,
   scamdoc_score: 80,
   https: true,
-  rating: 87
+  rating: 88
 }
 
 website3 = {
@@ -51,7 +54,7 @@ website3 = {
   trustpilot_verification: true,
   scamdoc_score: 13,
   https: true,
-  rating: 50
+  rating: 56
 }
 
 website4 = {
@@ -67,7 +70,7 @@ website5 = {
   trustpilot_verification: true,
   scamdoc_score: 99,
   https: true,
-  rating: 90
+  rating: 92
 }
 
 website6 = {
@@ -75,7 +78,8 @@ website6 = {
   trustpilot_verification: true,
   scamdoc_score: 77,
   https: true,
-  rating: 83 }
+  rating: 85 }
+
 
 [website1, website2, website3, website4, website5, website6].each do |attributes|
   website = Website.create!(website_url: attributes[:website_url])
