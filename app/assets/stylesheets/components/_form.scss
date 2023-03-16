@@ -20,13 +20,17 @@
   text-align: left;
   padding: 16px;
   input {
-    background-color:#87DEFF;
+    background-color: #87DEFF;
     border: #87DEFF;
     border-radius: 5px;
-    }
+    color: black;
+  }
+  select {
+    border-radius: 5px;
+  }
 }
 .form-bookmark a {
-  color: rgb(75, 13, 13);
+  color: black;
   margin-top: 5px;
 }
 
