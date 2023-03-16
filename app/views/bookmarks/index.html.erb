@@ -1,5 +1,5 @@
 
-<div class="wrapper justify-content-center col-12 col-md-6 col-lg-4" data-controller="bookmark-matches">
+<div class="wrapper justify-content-center col-12 col-md-6 col-lg-4 py-3" data-controller="bookmark-matches">
   <h2>Hello, <strong><%= current_user.username %></strong></h2>
   <h2 data-bookmark-matches-target="name" class="text-center pb-3">Bookmarks:</h2>
 
@@ -18,7 +18,7 @@
   </div>
 
   <p>You have <strong><%= @bookmarks.count %> bookmarks</strong> in total</p>
-  <div class="accordion" id="accordionExample" data-bookmark-matches-target="bookmarksHolder">
+  <div class="accordion bookmarks py-1" id="accordionExample" data-bookmark-matches-target="bookmarksHolder">
      <%= render "bookmarks", bookmarks: @bookmarks %>
   </div>
 

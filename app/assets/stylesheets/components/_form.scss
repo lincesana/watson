@@ -18,6 +18,11 @@
   display: flex;
   flex-direction: column;
   text-align: left;
+  input {
+    background-color:#87DEFF;
+    border: #87DEFF;
+    border-radius: 5px;
+    }
 }
 .form-bookmark a {
   color: rgb(75, 13, 13);
@@ -27,10 +32,4 @@
  select {
   margin-bottom: 5px;
   padding: 5px;
-}
-
-input {
-background-color:#87DEFF;
-border: #87DEFF;
-border-radius: 5px;
 }
