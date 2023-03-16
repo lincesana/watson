@@ -1,9 +1,11 @@
 <div class="wrapper justify-content-center col-12 col-md-6 col-lg-4" data-controller="search" >
 
-  <div class="display-search" data-search-target="displaySearch" style="
+  <div class="display-search mt-5 pt-5" data-search-target="displaySearch" style="
     height: 350px;">
+    <div class="empty-div mt-5">
+    </div>
     <div class="searching">
-       <h2 class="animated-text" data-text="Analysing...">Analysing...</h2>
+       <h2 class="animated-text show-page-font" data-text="Analysing..."><strong>Analysing...</strong></h2>
     </div>
     <div class="glass-position">
       <div class="spinner">
@@ -33,26 +35,28 @@
       </div>
           <div class="thinline">
       </div>
-    </div>
 
-    <div class="index-card" style="margin: 10px 10px;">
-      <p id=top-searches> Top <strong>3</strong> searches:</p>
-      <% @searches.each do |search| %>
-        <%= link_to search_path(search) do %>
-        <div class="show-card d-flex justify-content-between">
-          <p> <strong><%=search.website.website_url%></strong></p>
-           <%# <p> <%=website_url %</p>
-          <%# <p>Rating: <%= search.rating % >/10 </p> %>
-          <div>
-            <%= button_tag content_tag(:div, content_tag(:i, "", class:"fa-solid fa-arrow-right"), class: "circle"), id: "arrow" %>
+      <div class="index-card" style="margin: 10px 10px;">
+        <p id=top-searches> Top <strong>3</strong> searches:</p>
+        <% @searches.each do |search| %>
+          <%= link_to search_path(search) do %>
+          <div class="show-card d-flex justify-content-between">
+            <p> <strong><%=search.website.website_url%></strong></p>
+            <%# <p> <%=website_url %</p>
+            <%# <p>Rating: <%= search.rating % >/10 </p> %>
+            <div>
+              <%= button_tag content_tag(:div, content_tag(:i, "", class:"fa-solid fa-arrow-right"), class: "circle"), id: "arrow" %>
+            </div>
           </div>
-        </div>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
+
+      <div class="line">
+      </div>
+
     </div>
 
-    <div class="line">
-    </div>
   </div>
 
 </div>
