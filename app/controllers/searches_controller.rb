@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
   end
 
   def create
-    query = params["query"].downcase if params["query"].present?
+    query = clean_up_url(params["query"].downcase) if params["query"].present?
     @website = Website.find_by(website_url: query) || Website.create(website_url: query)
     @search = Search.where(website: @website)&.last
     # @trustpilot_score = 0
@@ -55,5 +55,9 @@ class SearchesController < ApplicationController
     else
       @trustpilot_score = 0
     end
+  end
+
+  def clean_up_url(url)
+    url.match?(/www./) ? url.gsub(/www./, "") : url
   end
 end
