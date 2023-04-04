@@ -10,7 +10,7 @@ export default class extends Controller {
     setTimeout((e)=> {
       console.log(e, 'hola');
       this.mainSearchTarget.submit()
-    }, 3000);
+    }, 6000);
     this.displaySloganTarget.style.display = 'none'
     this.displaySearchTarget.classList.remove("display-search")
   }
