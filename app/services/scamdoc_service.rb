@@ -11,6 +11,8 @@ class ScamdocService
 
   def scamdoc_score
     mechanize = Mechanize.new
+    aliases = ['Linux Firefox', 'Windows Chrome', 'Mac Safari']
+    mechanize.agent.user_agent = aliases.sample
     page = mechanize.get('https://www.scamdoc.com/')
     input = page.forms[0]
     # pp input
@@ -23,6 +25,8 @@ class ScamdocService
 
   def https_presence
     mechanize = Mechanize.new
+    aliases = ['Linux Firefox', 'Windows Chrome', 'Mac Safari']
+    mechanize.agent.user_agent = aliases.sample
     page = mechanize.get('https://www.scamdoc.com/')
     input = page.forms[0]
     # pp input
