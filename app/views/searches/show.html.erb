@@ -1,5 +1,5 @@
 
-<div class="wrapper row justify-content-center col-12 col-md-6 col-lg-4">
+<div class="wrapper">
    <div class="watson-rating-card mt-3 bg-white">
     <h2 class="show-page-font">You searched</h2>
     <h3 class="show-page-font"><strong>'<%=@search.website_url %>'</strong></h3>
@@ -74,13 +74,13 @@
 <div class="thinline mt-5">
   </div>
 
-  <div class="col-12 col-md-10 col-lg-8">
+  <div class="text-align:center">
         <h2>Reviews:</h2>
         <% if @search.reviews.empty? %>
           <small><em class="text-muted">Be the first one to review this shop</em></small>
         <% end %>
         <% @search.reviews.each do |review| %>
-          <div class="reviews">
+          <div class= "reviews">
             <small> <em class="text-muted"> review by <%= review.user.username %></em>,</small>
             <small> <em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
             <p class="mb-0"><%= review.comment %></p>
@@ -93,7 +93,7 @@
   </div>
 
 
-  <div class="col-12 col-md-10 col-lg-8">
+  <div class="text-align:center">
         <div class="bg-white rounded p-3">
           <%= simple_form_for [@search, @review] do |f| %>
             <%= f.input :comment, label: false, placeholder: "Add your review here..." %>
