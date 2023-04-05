@@ -9,8 +9,6 @@ class SearchesController < ApplicationController
     query = clean_up_url(params["query"].downcase) if params["query"].present?
     @website = Website.find_by(website_url: query) || Website.create(website_url: query)
     @search = Search.where(website: @website)&.last
-    # @trustpilot_score = 0
-    # @rating = 0
 
     unless @search.present? && @search.updated_at < 30.days.ago
       @search = Search.new
@@ -18,7 +16,11 @@ class SearchesController < ApplicationController
       @search.trustpilot_verification = TrustpilotService.new(query).trustpilot.present?
       @search.scamdoc_score = ScamdocService.new(query).scamdoc_score
       @search.https = ScamdocService.new(query).https_presence
-      @search.rating = scamdoc_weight + trustpilot_weight
+      if scamdoc_weight.nil?
+        @search.rating = nil
+      else
+        @search.rating = scamdoc_weight + trustpilot_weight
+      end
       @search.save
     end
 
@@ -41,8 +43,7 @@ class SearchesController < ApplicationController
   end
 
   def scamdoc_weight
-    pp @search
-    if @search.scamdoc_score > 90
+    if @search.scamdoc_score.nil? || @search.scamdoc_score > 90
       @search.scamdoc_score
     else
       @search.scamdoc_score * 0.8
