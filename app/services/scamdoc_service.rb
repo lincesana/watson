@@ -19,8 +19,12 @@ class ScamdocService
     input['expression'] = @search_input.to_s
     new_page = input.submit
     # puts new_page.uri
-    value = new_page.search("#final_score").attribute('value').value.to_i
-    @scamdoc_rating = value
+    if new_page.search("#w0-error-0").present?
+      @scamdoc_rating
+    else
+      value = new_page.search("#final_score").attribute('value').value.to_i
+      @scamdoc_rating = value
+    end
   end
 
   def https_presence

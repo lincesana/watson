@@ -3,7 +3,10 @@
    <div class="watson-rating-card mt-3 bg-white">
     <h2 class="show-page-font">You searched</h2>
     <h3 class="show-page-font"><strong>'<%=@search.website_url %>'</strong></h3>
-    <% if @search.rating > 59 %>
+    <% if @search.rating == nil %>
+     <i class="fa-solid fa-question", id="question"></i>
+      <p class="show-page-font mt-3 mb-5">We couldn't find this domain. Please verify your input. </p>
+    <% elsif @search.rating > 59 %>
       <i class="fa-regular fa-thumbs-up", id="thumbs-up"></i>
       <p class="show-page-font mt-3 mb-5">Rating score: <strong> <%= @search.rating %>% safe </strong></p>
     <% else %>
@@ -12,97 +15,105 @@
     <% end %>
   </div>
 
-  <div style="text-align:center">
-    <p style="text-align:center;">Add this search to your bookmarks:</strong></p>
-    <%= link_to "Save search", search_bookmarks_path(@search), data: {turbo_method: :post}, class:"btn-green" %>
-  </div>
 
-  <div class="thinline mt-5">
-  </div>
+  <% if @search.rating.nil? %>
+  <div class="domain-error">
+  <% else %>
+  <div>
+  <% end %>
+    <div style="text-align:center" >
+      <p style="text-align:center;">Add this search to your bookmarks:</strong></p>
+      <%= link_to "Save search", search_bookmarks_path(@search), data: {turbo_method: :post}, class:"btn-green" %>
+    </div>
 
-  <h2 style="text-align:center;" class="mt-5">Read more details:</strong></h2>
+    <div class="thinline mt-5">
+    </div>
 
-    <div class="card-container">
-      <div class="accordion" id="accordionExample">
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingThree">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-              <% if @search.https == true %>
-              HTTPS protocol detected
-              <% else %>
-              No HTTPS protocol detected
-              <% end %>
-            </button>
-          </h2>
-          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              Hypertext transfer protocol secure (HTTPS) is the secure version of HTTP, which is the primary protocol used to send data between a web browser and a website. HTTPS is encrypted in order to increase security of data transfer.
+    <h2 style="text-align:center;" class="mt-5">Read more details:</strong></h2>
+
+      <div class="card-container">
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                <% if @search.https == true %>
+                HTTPS protocol detected
+                <% else %>
+                No HTTPS protocol detected
+                <% end %>
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                Hypertext transfer protocol secure (HTTPS) is the secure version of HTTP, which is the primary protocol used to send data between a web browser and a website. HTTPS is encrypted in order to increase security of data transfer.
+              </div>
             </div>
           </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingOne">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-              <% if @search.trustpilot_verification == true %>
-              Verified company on Trustpilot
-              <% else %>
-              Not verified on Trustpilot
-              <% end %>
-            </button>
-          </h2>
-          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              Trustpilot is a digital platform that allows customers to review a business from which they've purchased a product or service or contacted customer service.
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                <% if @search.trustpilot_verification == true %>
+                Verified company on Trustpilot
+                <% else %>
+                Not verified on Trustpilot
+                <% end %>
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <a href="https://www.trustpilot.com/" target="_blank">Trustpilot</a> is a digital platform that allows customers to review a business from which they've purchased a product or service or contacted customer service.
+              </div>
             </div>
           </div>
-        </div>
-        <div class="accordion-item">
-          <h2 class="accordion-header" id="headingTwo">
-            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-              ScamDoc Score : <%= @search.scamdoc_score %> / 99
-            </button>
-          </h2>
-          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-            <div class="accordion-body">
-              Scamdoc is a web tool that evaluates "digital identities" reliability.
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                ScamDoc Score : <%= @search.scamdoc_score %> / 99
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+              <div class="accordion-body">
+                <a href="https://www.scamdoc.com/" target="_blank">Scamdoc</a> is a web tool that evaluates "digital identities" reliability.
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+    <div class="thinline mt-5">
     </div>
 
-<div class="thinline mt-5">
-  </div>
-
-  <div class="text-align:center">
-        <h2>Reviews:</h2>
-        <% if @search.reviews.empty? %>
-          <small><em class="text-muted">Be the first one to review this shop</em></small>
-        <% end %>
-        <% @search.reviews.each do |review| %>
-          <div class= "reviews">
-            <small> <em class="text-muted"> review by <%= review.user.username %></em>,</small>
-            <small> <em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
-            <p class="mb-0"><%= review.comment %></p>
-              <% if review.user == current_user %>
-                <%= link_to "", review_path(review,search_id: @search.id), class: "fa-regular fa-trash-can", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this review?" } %>
-              <% end %>
-          </div>
-          <hr>
-        <% end %>
-  </div>
-
-
-  <div class="text-align:center">
-        <div class="bg-white rounded p-3">
-          <%= simple_form_for [@search, @review] do |f| %>
-            <%= f.input :comment, label: false, placeholder: "Add your review here..." %>
-            <%= f.submit class:"btn btn-blue" %>
+    <div class="text-align:center">
+          <h2>Reviews:</h2>
+          <% if @search.reviews.empty? %>
+            <small><em class="text-muted">Be the first one to review this shop</em></small>
           <% end %>
-        </div>
-  </div>
+          <% @search.reviews.each do |review| %>
+            <div class= "reviews">
+              <small> <em class="text-muted"> review by <%= review.user.username %></em>,</small>
+              <small> <em class="text-muted"><%= distance_of_time_in_words_to_now(review.created_at) %> ago</em></small>
+              <p class="mb-0"><%= review.comment %></p>
+                <% if review.user == current_user %>
+                  <%= link_to "", review_path(review,search_id: @search.id), class: "fa-regular fa-trash-can", data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this review?" } %>
+                <% end %>
+            </div>
+            <hr>
+          <% end %>
+    </div>
 
-  <div class="thinline mt-4">
+
+    <div class="text-align:center">
+          <div class="bg-white rounded p-3">
+            <%= simple_form_for [@search, @review] do |f| %>
+              <%= f.input :comment, label: false, placeholder: "Add your review here..." %>
+              <%= f.submit class:"btn btn-blue" %>
+            <% end %>
+          </div>
+    </div>
+
+    <div class="thinline mt-4">
+    </div>
+
   </div>
 
   <div style="text-align:center" class= "mt-5";>
